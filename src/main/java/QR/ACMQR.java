@@ -74,7 +74,6 @@ public class ACMQR extends JFrame implements Runnable, ThreadFactory {
         frame.setVisible(true);
     }
 
-    @Override
     public void run() {
         do {
             try {
@@ -94,7 +93,7 @@ public class ACMQR extends JFrame implements Runnable, ThreadFactory {
 
                 try {
                     result = new MultiFormatReader().decode(bitmap);
-                } catch (NotFoundException e) { //no qr code found
+                } catch (NotFoundException e) { 
                 }
                 
                 if (result != null) {
@@ -103,10 +102,10 @@ public class ACMQR extends JFrame implements Runnable, ThreadFactory {
                         db.register(result.getText(), "Dummy"); 
                         checkAttendance(result.getText());
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Error: \""+result.getText()+"\" not in database.");
+                        JOptionPane.showMessageDialog(null, "Error: \""+result.getText()+"\" not found.");
                         ex.printStackTrace();
                     }
-                    //JOptionPane.showMessageDialog(null, result.getText());
+                 
                 }
             }
         } while (true);
@@ -116,7 +115,7 @@ public class ACMQR extends JFrame implements Runnable, ThreadFactory {
         try {
 			label.setText("Name: "+DB.getName(uid));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     }
